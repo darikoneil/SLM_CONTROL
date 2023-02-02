@@ -7,8 +7,8 @@ from PIL import Image
 import numpy as np
 
 
-from .dev_tools.parsing import convert_optionals, require_full_path
-from .dev_tools.validation import validate_exists, validate_path, validate_extension
+from .dev_tools.parsing import convert_optionals
+from .dev_tools.validation import validate_exists, validate_path, validate_extension, validate_phase_mask
 
 cdll.LoadLibrary("Blink_SDK_C") # Load SDK
 
@@ -25,6 +25,7 @@ class SLM:
 
         self._bit_depth = c_uint(8)
         self._calibration_image = read_image("".join([sdk_path, "\\512white.bmp"]))
+        self._external_pulse = c_bool(false)
         self._is_nematic_type = c_bool(true)
         # noinspection PyTypeChecker
         self._regional_lut_file = read_lut("".join([sdk_path, "\\SLM_lut.txt"]))
@@ -32,6 +33,7 @@ class SLM:
         self._RAW_write_enable = c_bool(true)
         self._use_GPU = c_bool(true)
         self._slm_resolution = c_uint(512)
+        self._wait_for_trigger = c_bool(false)
 
         self.constructed_okay = c_bool(false) # was sdk constructed properly
         self.num_boards_found = c_uint(false) # number of slm's found
@@ -90,6 +92,27 @@ class SLM:
         self._calibration_image = read_image("".join([sdk_path, path]))
 
     @property
+    def external_pulse(self) -> c_bool:
+        """
+        Boolean indicating whether to sent external pulse upon image writing
+
+        :rtype: c_bool
+        """
+        return self._external_pulse
+
+    @external_pulse.setter
+    def external_pulse(self, flag: bool) -> Self:
+        """
+        external pulse setter
+
+        :param flag: Boolean indicating whether to sent external pulse upon image writing
+        :type flag: bool
+        :rtype: Self
+        """
+        assert(isinstance(flag, bool))
+        self._external_pulse = c_bool(flag)
+
+    @property
     def is_nematic_type(self):
         """
         Boolean indicated whether the SLM is a nematic type SLM (almost always would be)
@@ -109,6 +132,15 @@ class SLM:
         """
         assert(isinstance(flag, bool)) # make sure we passed a boolean here
         self._is_nematic_type = c_bool(flag)
+
+    @property
+    def has_overdrive(self) -> bool:
+        """
+        Indicates whether SLM has overdrive capability (CPU or GPU)
+
+        :rtype: bool
+        """
+        return bool(self.slm_lib.Is_overdrive_available())
 
     @property
     def regional_lut_file(self) -> c_char_p:
@@ -213,6 +245,27 @@ class SLM:
         assert(isinstance(flag, bool))
         self._use_GPU = c_bool(flag)
 
+    @property
+    def wait_for_trigger(self) -> c_bool:
+        """
+        Boolean indicating whether to wait for trigger before writing mask
+
+        :rtype: c_bool
+        """
+        return self._wait_for_trigger
+
+    @wait_for_trigger.setter
+    def wait_for_trigger(self, flag: bool) -> Self:
+        """
+        wait for trigger setter
+
+        :param flag: Boolean indicating whether to wait for trigger before writing mask
+        :type flag: bool
+        :rtype: Self
+        """
+        assert(isinstance(flag, bool))
+        self._wait_for_trigger = c_bool(flag)
+
     def power_on(self):
         # noinspection PyTypeChecker
         self.slm_lib.SLM_power(self.sdk, c_bool(true))
@@ -220,6 +273,18 @@ class SLM:
     def power_off(self):
         # noinspection PyTypeChecker
         self.slm_lib.SLM_power(self.sdk, c_bool(false))
+
+    @validate_phase_mask(pos=0)
+    def calculate_phase_mask_via_overdrive(self, mask: np.ndarray) -> bool:
+        """
+        Calculate phase mask via overdrive. Phase values 0-1 map to 0-255
+
+        :param mask: phase mask/s.
+        :type mask: np.ndarray
+        :returns: true if successful
+        :rtype: bool
+        """
+        return bool(self.slm_lib.Calculate_transient_frames(mask, mask.tobytes()))
 
     def set_basic_parameters(self):
         """
@@ -230,6 +295,32 @@ class SLM:
         self.slm_lib.Set_true_frames(self.sdk, self.true_frames)
         self.slm_lib.Write_cal_buffer(self.sdk, 1, self.calibration_image) # load blank calibration image
         self.slm_lib.Load_linear_LUT(self.sdk, 1) # load linear LUT
+
+    @validate_phase_mask(pos=1)
+    def write_phase_mask(self, board: int, phase_mask: np.ndarray):
+        """
+        Write a phase mask using overdrive
+
+        :param board: index of board (0-index)
+        :type board: int
+        :param phase_mask: phase mask to be sent to SLM
+        :type phase_mask: np.ndarray
+        """
+        self.slm_lib.Write_overdrive_image(c_uint(board+1), self.slm_resolution, self.wait_for_trigger,
+                                           self.external_pulse)
+
+    @validate_image_mask(pos=1)
+    def write_image(self, board: int, image: np.ndarray):
+        """
+        Write an image
+
+        :param board: index of board (0-index)
+        :type board: int
+        :param image: image to be sent to SLM
+        :type image: np.ndarray
+        """
+        self.slm_lib.Write_image(c_uint(board+1), image, self.slm_resolution, self.wait_for_trigger,
+                                 self.external_pulse)
 
     def __exit__(self, exc_type, exc_value, traceback):
         """
