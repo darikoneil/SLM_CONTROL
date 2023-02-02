@@ -1,0 +1,8 @@
+Serial: 5221
+In Bit Depth: 8
+Out Bit Depth: 12
+SLM Width: 1920
+SLM Height: 1152
+
+
+Pririe1 BNS: 4317
