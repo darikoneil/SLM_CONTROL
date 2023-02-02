@@ -1,2 +1,2 @@
 # SLM_CONTROL
-Private Repository for SLM GUI files
+Private Repository for SLM files
