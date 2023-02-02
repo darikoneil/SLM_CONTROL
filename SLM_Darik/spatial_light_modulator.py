@@ -241,6 +241,24 @@ class SLM:
         self.slm_lib.Delete_SDK(self.sdk)
 
 
+class BNS512(SLM):
+    """
+    BNS512 SLM from Meadowlark (Prairie-1)
+
+    """
+    def __init__(self):
+        super().__init__()
+        self.bit_depth = 8
+        self.calibration_image = "".join([sdk_path, "\\512white.bmp"])
+        self.is_nematic_type = true
+        # noinspection PyTypeChecker
+        self.regional_lut_file = "".join([sdk_path, "\\SLM_lut.txt"])
+        self._max_transients = 20
+        self.RAW_write_enable = true
+        self.use_GPU = true
+        self.slm_resolution = 512
+
+
 @convert_optionals(permitted=(str, pathlib.Path), required=str, pos=0)
 @validate_path(pos=0)
 @validate_extension(required_extension=".bmp", pos=0)
