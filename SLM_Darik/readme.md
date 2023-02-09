@@ -9,4 +9,4 @@ untested
 
 requires PPVD
 
-pip install PPVD
+`pip install PPVD`
