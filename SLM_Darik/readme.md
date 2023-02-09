@@ -7,6 +7,6 @@ reverse engineering slm stuff to understand
 untested
 
 
-requires PPVD
+requires PPVD & numpy
 
 `pip install PPVD`
