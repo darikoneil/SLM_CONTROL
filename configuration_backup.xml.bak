@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config version="5.8.64.100" date="3/30/2023 2:22:14 PM" checksum="2A6BCC63EBCCF90D12B234824B75F1D6144B12A418BDC4155D21A93831502DAE03E3A1F7E29E9C93D8F7D1AC9446FD3D246738412B3BEAB9A6C5FEF11159E36D" notes="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Microsoft Sans Serif;}}&#xD;&#xA;{\*\generator Riched20 10.0.19041}\viewkind4\uc1 &#xD;&#xA;\pard\f0\fs17\par&#xD;&#xA;}&#xD;&#xA;">
+  <PVUltima enabled="True" highSpeedDevice="ResonantGalvo" parkSample="True" channel1Present="True" channel2Present="True" channel3Present="True" channel4Present="False">
+    <SystemIDs SystemID="654E-67B3-4F22-D162-1E28-04D9-ED29-6555">
+      <SystemID SystemID="4489" Description="REPLICA OF P1" />
+    </SystemIDs>
+    <Allow3P enabled="False" />
+  </PVUltima>
+  <PVUncaging asynchronousUncagingGalvos="Uncaging">
+    <HighSpeedSwitch enabled="False" line="4" delay="6" />
+    <PVUncagingBeamControlSwitch enabled="False" type="PVDigitalOutputDAQINT" device="1" line="0" />
+  </PVUncaging>
+  <HighSpeedShutterController enabled="False" line="4" type="DSS10B" closeDelay="0" openDelay="0" />
+  <PVDodtDetector enabled="False" type="PVUSBTripleServo" dodtMirror1="Out/Off" dodtMirror2="In/On" dodtFilter1="1" dodtFilter2="2" oldStyle="False" />
+  <AlternateBeamRoutes>
+    <AlternateBeamRoute enabled="False" uiText="Secondary Laser Beam Route" disabledText="Imaging" enabledText="Uncaging" device="2" line="3" type="PVDigitalOutputDAQINT" />
+    <AlternateBeamRoute enabled="False" uiText="" disabledText="Imaging" enabledText="Uncaging" device="2" line="3" type="None" />
+    <AlternateBeamRoute enabled="False" uiText="" disabledText="Imaging" enabledText="Uncaging" device="2" line="3" type="None" />
+  </AlternateBeamRoutes>
+  <PVPrairieGPIOBox enabled="True" galvoImageX="1" galvoImageY="1" galvoImageXUncage="2" galvoImageYUncage="2" galvoUncageX="2" galvoUncageY="2" pockels1OutEnabled="True" pockels1OutInput="0" pockels1OutPAInput="0" pockels1OutUncagingInput="4" pockels1OutAlternateBeamRoute="0" pockels1OutAlternateBeamRouteInput="0" pockels2OutEnabled="False" pockels2OutInput="1" pockels2OutPAInput="3" pockels2OutUncagingInput="5" pockels2OutAlternateBeamRoute="0" pockels2OutAlternateBeamRouteInput="4" disableExternalFrameTrigger="False" PMTSignalRoutingPresent="False" LaserRoutingPresent="False" LaserRoutingApplication="Imaging and Uncaging" LaserRoutingAlternateBeamRoute="0" />
+  <PVDeviceControlBox serialPort="1" baudRate="19200" dataBits="8" stopBits="1" parity="0" enabled="False" />
+  <PVPrairieMAMC encoder0Divisor="64" encoder1Divisor="64" encoder2Divisor="64" enabled="True" />
+  <OrbitalNosepiece enabled="False" motorized="False" singleAxis="False" />
+  <PVWindowController>
+    <PVWindowButtonState state="Channel1,Channel2,Channel3" />
+    <PVWindowButtonText>
+      <PVButton name="Channel1" text="Red" />
+      <PVButton name="Channel2" text="Green" />
+      <PVButton name="Channel3" text="Spot" />
+      <PVButton name="Channel4" text="Ch4" />
+    </PVWindowButtonText>
+  </PVWindowController>
+  <PVLasers DisableInterlacedScanPatterns="False">
+    <PVLaser enabled="True" name="Imaging" units="Volts" outMin="0" outMax="1.9" displayMin="0" displayMax="1000" smallStep="1" largeStep="5" lagTime="100" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="0" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="True" name="Uncaging" units="Volts" outMin="0" outMax="5" displayMin="0" displayMax="1000" smallStep="1" largeStep="5" lagTime="100" deviceType="PVAsynchronousAnalogOutput" device="0" line="6" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="ETL" units="Volts" outMin="0" outMax="5" displayMin="0" displayMax="500" smallStep="1" largeStep="5" lagTime="100" deviceType="PVAnalogOutputDAQBuffered" device="4" line="1" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-2" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+    <PVLaser enabled="False" name="" units="Volts" outMin="0" outMax="0" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" lagTime="0" deviceType="PVAnalogOutputDAQBuffered" device="4" line="0" sharedLine="0" twoPLaser="-1" gpioBoxPADAC="-1" shutterIndex="-1" alternateBeamRoute="-1" alternateBeamRouteShutter="-1" />
+  </PVLasers>
+  <SLM enabled="False" TriggerLine="3" RemoteSLM="False" RemoteSLMHost="" />
+  <QuadGaAsPController enabled="False" secondControllerPresent="False" secondControllerSN="" />
+  <PVPMTs gatingSignalEnabled="False" gatingSignalLine="4">
+    <PVPMT enabled="True" name="Red" outMin="0" outMax="5" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputPrairieGPIOBox" device="8" line="1" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="True" name="Green" outMin="0" outMax="5" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputPrairieGPIOBox" device="9" line="1" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Dummy " outMin="0" outMax="5" displayMin="0" displayMax="1000" smallStep="1" largeStep="10" deviceType="PVAnalogOutputPrairieGPIOBox" device="10" line="0" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Ch 1 Sub HV" outMin="0" outMax="0" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputDeviceControlBox" device="4" line="1" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Ch 2 Sub HV" outMin="0" outMax="0" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputDeviceControlBox" device="5" line="1" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Ch 3 Sub HV" outMin="0" outMax="0" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputDeviceControlBox" device="0" line="0" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Ch 4 HV" outMin="0" outMax="0" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputDeviceControlBox" device="0" line="0" highSpeedShutterIndex="0" gated="False" />
+    <PVPMT enabled="False" name="Ch 4 Sub Hv" outMin="0" outMax="0" displayMin="0" displayMax="1250" smallStep="1" largeStep="10" deviceType="PVAnalogOutputDeviceControlBox" device="0" line="0" highSpeedShutterIndex="0" gated="False" />
+  </PVPMTs>
+  <PVCustomOutputs enabled="False">
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+    <PVCustomOutput enabled="False" customOutputName="" customOutputUnits="Volts" customOutputMin="0" customOutputMax="0" customOutputDefault="0" customOutputDisplayMin="0" customOutputDisplayMax="0" customOutputLine="0" synchZ="False" />
+  </PVCustomOutputs>
+  <PVBOTDriveSignals enabled="False">
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+    <PVBOTDriveSignal enabled="False" units="Volts" min="0" max="0" default="0" line="0" botIndex="0" scalingFactor="1" />
+  </PVBOTDriveSignals>
+  <PVPreamps enabled="True" skipReset="False" isLegacy="True">
+    <PVPreamp index="0" enabled="True">
+      <PVPreampBlade enabled="True" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch1" GPIOInput="-1" />
+      <PVPreampBlade enabled="True" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch2" GPIOInput="-1" />
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch3" GPIOInput="-1" />
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch 4" GPIOInput="3" />
+    </PVPreamp>
+    <PVPreamp index="1" enabled="False">
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch5" GPIOInput="-1" />
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch6" GPIOInput="-1" />
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch7" GPIOInput="-1" />
+      <PVPreampBlade enabled="False" gainOutMin="1.0" gainOutDefault="1.0" gainOutMax="68.841" gainDisplayMin="0.0" gainDisplayMax="100.0" offsetOutMin="-0.1" offsetOutDefault="0.0" offsetOutMax="0.1" offsetDisplayMin="-100.0" offsetDisplayMax="100.0" UIText="Ch8" GPIOInput="-1" />
+    </PVPreamp>
+  </PVPreamps>
+  <PVShutters>
+    <PVShutter enabled="True" defaultState="False" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="0" uiText="Coherent" delay="0" lightPath="Imaging" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+    <PVShutter enabled="True" defaultState="False" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="1" uiText="Spirit" delay="0" lightPath="Uncaging" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+    <PVShutter enabled="False" defaultState="True" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="0" uiText="" delay="0" lightPath="" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+    <PVShutter enabled="False" defaultState="True" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="0" uiText="" delay="0" lightPath="" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+    <PVShutter enabled="False" defaultState="True" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="0" uiText="" delay="0" lightPath="" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+    <PVShutter enabled="False" defaultState="True" deviceType="PVDigitalOutputPrairieGPIOBox" device="0" line="0" uiText="" delay="0" lightPath="" alternateBeamRoute="-1" alternateBeamRouteLightPath="" highSpeedShutterBoxInput="0" />
+  </PVShutters>
+  <PVXYZDevices zEnabled="True" xyEnabled="True">
+    <PVFocusAssembly name="Z" type="BrukerMAMC" enabled="True" baudRate="115200" commandTerminator="1" communicationMethod="Serial" countsPerRevolution="100" dataBits="8" maximumPosition="1000000.0" micronsPerRevolution="100" minimumPosition="-1000000.0" moveWait="0" parity="0" serialPort="9" stepsPerRevolution="100" stopBits="1" fastestAcquisitionOption="False" invert="False" resetOption="True" softwareControlOption="False">
+      <PVFocusAssemblyOlympusBXUCB remoteOption="False" zIndex="" />
+      <PVFocusAssemblyPrairieDeviceControlBox motorGroup="" motorAxis="" motorSpeed="" motorAcceleration="" boxIndex="" />
+      <PVFocusAssemblyLN zRack="" zStage="" zInvertPosition="False" />
+      <PVFocusAssemblyPrairieMultiAxisMotorController motorIndex="2" controllerLink="Encoder Axis 2" controllerPolarity="False" speed="1000" acceleration="1000" encoderTicksPerMicrostep="0.3125" micronsPerEncoderTick="0.025" staticPositioningTolerance="0.05" disableTime="0.1" failureDistance="200" dynamicPositioningTolerance="0.05" limitSwitches="False" invertLimitSwitchPolarity="False" auxiliaryZ="False" />
+      <BrukerNeuraLeap transferLensFocalLength="100" axiconAngle="1" wavelength="920" />
+      <BrukerPiezo margin="25" speed="1000" acceleration="1000" />
+      <PVFocusAssemblyASIMFC2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyASIMS2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyLEPMAC6000Piezo zIndex="1" minimumVoltage="0.0" maximumVoltage="10.0" />
+      <PVFocusAssemblyDAQBuffered line="0" outMin="0" outMax="0" default="0" units="Volts" displayMin="0" displayMax="0" lagTime="0" subtype="None" />
+      <PVFocusAssemblyOptotuneETL line="0" outMin="0" outMax="0.62" units="Volts" displayMin="-10000" displayMax="10000" lagTime="0" />
+      <PVFocusAssemblySFCAnalogZ motorAxis="0" minimumVoltage="0" maximumVoltage="5" shareControl="False" sharedZIndex="0" subtype="None" />
+      <PIN565 speed="1000" />
+    </PVFocusAssembly>
+    <PVFocusAssembly name="DUMMY Z Device" type="DAQBuffered" enabled="False" baudRate="" commandTerminator="" communicationMethod="" countsPerRevolution="" dataBits="" maximumPosition="" micronsPerRevolution="" minimumPosition="" moveWait="15" parity="" serialPort="" stepsPerRevolution="" stopBits="" fastestAcquisitionOption="True" invert="False" resetOption="False" softwareControlOption="False">
+      <PVFocusAssemblyOlympusBXUCB remoteOption="False" zIndex="" />
+      <PVFocusAssemblyPrairieDeviceControlBox motorGroup="" motorAxis="" motorSpeed="" motorAcceleration="" boxIndex="" />
+      <PVFocusAssemblyLN zRack="" zStage="" zInvertPosition="False" />
+      <PVFocusAssemblyPrairieMultiAxisMotorController motorIndex="" controllerLink="" controllerPolarity="False" speed="" acceleration="" encoderTicksPerMicrostep="" micronsPerEncoderTick="" staticPositioningTolerance="" disableTime="" failureDistance="" dynamicPositioningTolerance="" limitSwitches="False" invertLimitSwitchPolarity="False" auxiliaryZ="False" />
+      <BrukerNeuraLeap transferLensFocalLength="100" axiconAngle="1" wavelength="920" />
+      <BrukerPiezo margin="25" speed="" acceleration="" />
+      <PVFocusAssemblyASIMFC2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyASIMS2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyLEPMAC6000Piezo zIndex="" minimumVoltage="" maximumVoltage="" />
+      <PVFocusAssemblyDAQBuffered line="1" outMin="0" outMax="5" default="0" units="Volts" displayMin="0" displayMax="500" lagTime="0" subtype="PIE662" />
+      <PVFocusAssemblyOptotuneETL line="0" outMin="0" outMax="0.62" units="Volts" displayMin="-10000" displayMax="10000" lagTime="0" />
+      <PVFocusAssemblySFCAnalogZ motorAxis="" minimumVoltage="" maximumVoltage="" shareControl="False" sharedZIndex="" subtype="None" />
+      <PIN565 speed="" />
+    </PVFocusAssembly>
+    <PVFocusAssembly type="OptotuneETL" enabled="True" baudRate="" commandTerminator="" communicationMethod="" countsPerRevolution="" dataBits="" maximumPosition="" micronsPerRevolution="" minimumPosition="" moveWait="15" parity="" serialPort="" stepsPerRevolution="" stopBits="" fastestAcquisitionOption="True" invert="False" resetOption="False" softwareControlOption="False">
+      <PVFocusAssemblyOlympusBXUCB remoteOption="False" zIndex="" />
+      <PVFocusAssemblyPrairieDeviceControlBox motorGroup="" motorAxis="" motorSpeed="" motorAcceleration="" boxIndex="" />
+      <PVFocusAssemblyLN zRack="" zStage="" zInvertPosition="False" />
+      <PVFocusAssemblyPrairieMultiAxisMotorController motorIndex="" controllerLink="" controllerPolarity="False" speed="" acceleration="" encoderTicksPerMicrostep="" micronsPerEncoderTick="" staticPositioningTolerance="" disableTime="" failureDistance="" dynamicPositioningTolerance="" limitSwitches="False" invertLimitSwitchPolarity="False" auxiliaryZ="False" />
+      <BrukerNeuraLeap transferLensFocalLength="100" axiconAngle="1" wavelength="920" />
+      <BrukerPiezo margin="25" speed="" acceleration="" />
+      <PVFocusAssemblyASIMFC2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyASIMS2000 motorSpeed="" motorAcceleration="" />
+      <PVFocusAssemblyLEPMAC6000Piezo zIndex="" minimumVoltage="" maximumVoltage="" />
+      <PVFocusAssemblyDAQBuffered line="" outMin="" outMax="" default="" units="Volts" displayMin="" displayMax="" lagTime="" subtype="None" />
+      <PVFocusAssemblyOptotuneETL line="1" outMin="0" outMax="3" units="Volts" displayMin="-10000" displayMax="10000" lagTime="0" />
+      <PVFocusAssemblySFCAnalogZ motorAxis="" minimumVoltage="" maximumVoltage="" shareControl="False" sharedZIndex="" subtype="None" />
+      <PIN565 speed="" />
+    </PVFocusAssembly>
+    <PVXYStage type="BrukerMAMC" enabled="True" swapXY="False" resetOption="True" xDirection="False" yDirection="False" baudRate="115200" commandTerminator="1" communicationMethod="Serial" dataBits="8" parity="0" serialPort="14" stopBits="1" moveWait="0" xCountsPerRevolution="100" xMaximumPosition="10000000.0" xMicronsPerRevolution="100" xMinimumPosition="-10000000.0" xStepsPerRevolution="100" yCountsPerRevolution="100" yMaximumPosition="10000000.0" yMicronsPerRevolution="100" yMinimumPosition="-10000000.0" yStepsPerRevolution="100">
+      <PVXYStagePrairieDeviceControlBox xMotorAcceleration="100" xMotorAxis="0" xMotorGroup="-1" xMotorSpeed="6.5" yMotorAcceleration="100" yMotorAxis="1" yMotorGroup="-1" yMotorSpeed="6.5" />
+      <PVXYStageLN xRack="1" xStage="1" xInvertPosition="False" yRack="1" yStage="1" yInvertPosition="False" />
+      <PVXYStageLNSM10Plus xRack="" xStage="" xInvertPosition="False" yRack="" yStage="" yInvertPosition="False" />
+      <PVXYStageScientifica scaleFactor="1.0" />
+      <PVXYStagePrairieMultiAxisMotorController xMotorIndex="0" xControllerLink="Encoder Axis 0" xControllerPolarity="False" yMotorIndex="1" yControllerLink="Encoder Axis 1" yControllerPolarity="False" speed="2000" acceleration="2000" encoderTicksPerMicrostep="0.3125" xMicronsPerEncoderTick="0.15875" yMicronsPerEncoderTick="0.15875" staticPositioningTolerance="0.75" disableTime="0.1" failureDistance="100" dynamicPositioningTolerance="0.75" xLimitSwitches="True" xInvertLimitSwitchPolarity="True" yLimitSwitches="True" yInvertLimitSwitchPolarity="True" auxX="False" auxY="False" auxXMotorIndex="3" auxXControllerLink="Encoder Axis 0" auxYMotorIndex="4" auxYControllerLink="Encoder Axis 1" auxXYSpeed="2000" auxXYAcceleration="2000" auxXYEncoderTicksPerMicrostep="0.3125" auxXMicronsPerEncoderTick="0.25" auxYMicronsPerEncoderTick="0.25" auxXYStaticPositioningTolerance="0.075" auxXYDisableTime="0.1" auxXYFailureDistance="100" auxXYDynamicPositioningTolerance="0.075" auxXInvertMotor="False" auxXLimitSwitches="True" auxXInvertLimitSwitchPolarity="False" auxYInvertMotor="False" auxYLimitSwitches="True" auxYInvertLimitSwitchPolarity="False" />
+      <PVXYStagePriorProScanII xMotorAcceleration="100" xMotorSpeed="6.5" xControllerPolarity="False" yMotorAcceleration="100" yMotorSpeed="6.5" yControllerPolarity="False" />
+      <PVXYStagePriorProScanI xMotorAcceleration="100" xMotorSpeed="6.5" xControllerPolarity="False" yMotorAcceleration="100" yMotorSpeed="6.5" yControllerPolarity="False" />
+      <PVXYStageASIMS2000 xMotorSpeed="6.5" xMotorAcceleration="100" yMotorSpeed="6.5" yMotorAcceleration="100" />
+    </PVXYStage>
+  </PVXYZDevices>
+  <PVPhotoActivation enabled="False" />
+  <PV2PLaser enabled="False">
+    <PV2PLaser enabled="False" name="Exciter" type="Chameleon" commandTerminator="0" serialPort="3" baudRate="19200" dataBits="8" stopBits="1" parity="0" minimumWavelength="700" maximumWavelength="1000" wavelengthStep="400" watchdog="0" pumped="False" pumpSource="1" preset1="720" preset2="810" preset3="860" preset4="920" preset5="965" preset6="1020" />
+    <PV2PLaser enabled="False" name="Exciter" type="Chameleon" commandTerminator="0" serialPort="3" baudRate="19200" dataBits="8" stopBits="2" parity="0" minimumWavelength="700" maximumWavelength="1000" wavelengthStep="400" watchdog="0" pumped="False" pumpSource="2" preset1="720" preset2="810" preset3="860" preset4="920" preset5="965" preset6="1020" />
+    <PV2PLaser enabled="False" name="Exciter" type="Chameleon" commandTerminator="0" serialPort="3" baudRate="19200" dataBits="8" stopBits="2" parity="0" minimumWavelength="700" maximumWavelength="1000" wavelengthStep="400" watchdog="0" pumped="False" pumpSource="3" preset1="720" preset2="810" preset3="860" preset4="920" preset5="965" preset6="1020" />
+    <PV2PLaser enabled="False" name="Exciter" type="Chameleon" commandTerminator="0" serialPort="3" baudRate="19200" dataBits="8" stopBits="2" parity="0" minimumWavelength="700" maximumWavelength="1000" wavelengthStep="400" watchdog="0" pumped="False" pumpSource="0" preset1="720" preset2="810" preset3="860" preset4="920" preset5="965" preset6="1020" />
+  </PV2PLaser>
+  <PVModeServo enabled="True" type="PVUSBQuadServo" disable="True" />
+  <PVCoverInterlock enabled="False" type="PVModeServo" inputLine="5" closedState="1" />
+  <PVNewportMotorDriver enabled="False" serialPort="3" baudRate="19200" dataBits="8" stopBits="1" parity="0" commandTerminator="0" flowControl="XOnXOff" />
+  <PV1PPinhole enabled="false" servoPresent="False" servoType="PVModeServo" outputLine="5" openPosition="0" motorPresent="False" motorType="PVNewportNewStep" xAxis="1" xAxisInvertDirection="False" yAxis="2" yAxisInvertDirection="False" xAxisName="NSC200" yAxisName="NSC200" />
+  <PVDualScanController enabled="True" panUsingDeviceForLine="False" panDeviceType="PVAnalogOutputDAQINT" panDevice="3" panLine="0" AODPowerEnabled="False" AODPowerOut="0" AODPowerDeviceType="PVAnalogOutputPrairieGPIOBox" AODPowerDevice="0" resonantDAQSerial="13" resonantDAQTimeout="0" resonantExternalClock="3" shutterOverride="True" shutterOverrideThis="1" shutterOverrideWith="2">
+    <Setting name="Galvo:default">
+      <PVDigitalInputDAQINT inputLine="5" />
+    </Setting>
+    <Setting name="AOD:1x">
+      <PVDigitalInputDeviceControlBox inputLine="3" />
+    </Setting>
+    <Setting name="AOD:2x">
+      <PVDigitalInputDeviceControlBox inputLine="4" />
+    </Setting>
+    <Setting name="AOD:3x">
+      <PVDigitalInputDeviceControlBox inputLine="5" />
+    </Setting>
+    <Setting name="AOD:4x">
+      <PVDigitalInputDeviceControlBox inputLine="6" />
+    </Setting>
+    <Setting name="AOD:infinity">
+      <PVDigitalInputDeviceControlBox inputLine="7" />
+    </Setting>
+    <Setting name="SFC:PA">
+      <PVDigitalInputDeviceControlBox inputLine="" />
+    </Setting>
+  </PVDualScanController>
+  <PVSFC enabled="False" numApertures="7" serialPort="3" galvoAxis="X" galvoInverted="False" timedSyncTrigger="StartOfFrame" auxVoltage="5">
+    <PVSFCEmissionFilterWheel enabled="True" positions="6" motor="1" filterwheel="Bruker" />
+    <PVSFCPiezoZ enabled="True" piezoTrigger="0" />
+    <SFCWidefieldBypass enabled="False" />
+    <PVSFCPiezoCorrectionSuspension enabled="False" />
+    <PVSFCInputTrigger enabled="False" inputTrigger="1" activeState="True" />
+    <PVCamera model="Photometrics Evolve" index="0" exposureTimeReduction="0" flipX="False" flipY="False" />
+    <PVImageSplittingOptics enabled="false" type="none" />
+  </PVSFC>
+  <PVCameraOnlyMode enabled="False">
+    <PVCamera model="Photometrics QuantEM 512SC" index="0" exposureTimeReduction="0" flipX="False" flipY="False" />
+    <PVImageSplittingOptics enabled="false" type="none" />
+  </PVCameraOnlyMode>
+  <PVMicroscope enabled="False" type="Other" tubeLensFocalLength="180.0" />
+  <PVUtilityButtons enabled="False">
+    <PVUtilityButton enabled="False" caption="Button 1" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 2" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 3" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 4" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 5" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 6" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 7" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+    <PVUtilityButton enabled="False" caption="Button 8" offString="Off" onString="On" deviceType="PVDigitalOutputPrairieGPIOBox" outputLine="0" triggerPulse="False" />
+  </PVUtilityButtons>
+  <PVConfocal enabled="False" type="PVUSBConfocalControl1" readLabelsFromController="False" />
+  <PVSealTest patchClampDevice="Multiclamp700B" />
+  <PlaneScanning enabled="false" />
+  <PVXZYZ enabled="false" triggerRoutingEnabled="false" device="PVAnalogOutputPrairieGPIOBox" line="0" />
+  <PVXLED enabled="False" LED1Name="LED1" LED2Name="LED2" LED3Name="LED3" LED4Name="LED4" XLEDSerialPort="2" />
+  <PVTransLED>
+    <SFCMode Enabled="False" LaserLine="1" />
+    <CamMode Enabled="False" LaserLine="1" />
+  </PVTransLED>
+</Config>
