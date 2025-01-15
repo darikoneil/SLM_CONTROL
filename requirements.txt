@@ -1,7 +1,7 @@
 colorcet
 matplotlib
 numpy
-polars
+polars[numpy, pyarrow]
 pydantic>=2.0
 scipy
 slmsuite
