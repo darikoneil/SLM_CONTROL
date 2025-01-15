@@ -1,7 +1,7 @@
 
 
 The initial `spatial_light_modulator` module was from when I was reverse engineering 
-slm stuff to understand things before talking with Chris at `slmsuite`. These are 
+slm stuff to understand things before `slmsuite`. These are 
 completely untested and I don't plan to ever test them. They don't have a backend for 
 meadowlark PCIe-connected SLMs, so I wrote my own and will get around to  
 push/testing it. Assuming that that feature will be pushed expediently, we can use 
