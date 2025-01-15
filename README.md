@@ -8,5 +8,6 @@ will be pushed expediently, we can use `slmsuite` as an interface to make any SL
 hardware-agnostic. 
 
 The modules in `optics` are forward engineered for both understanding dual-beam SLM configurations 
-& potential future use. The code quality is highly variable. Anything good will eventually get polished, 
-tested, & merged into `neurobeam`'s optics module and the rest will be left to rot.
+& potential future use. The code quality is highly variable. Minor portions are copy/pasted from
+`neurobeam`. Anything good will eventually get polished, tested, & merged into `neurobeam`'s optics 
+module and the rest will be left to rot.
