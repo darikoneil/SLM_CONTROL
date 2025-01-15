@@ -1,6 +1,0 @@
-Started at 19:30:35 on 3/17/2021
- Hardware counter period is 0.331 us.
- Hi_timer minimum timer interval is 0.000 to 0.331 us.
- Minimum forced delay is around 0.331 us.
-Setting logging interval units to [us].
-Stopped at 19:30:37 on 3/17/2021
