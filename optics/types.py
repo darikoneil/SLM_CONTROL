@@ -46,6 +46,7 @@ class PathConfiguration(_IntEnum):
     :var STIMULATION_HYBRID: Stimulation with a hybrid strategy
     :var STIMULATION_SCANLESS: Stimulation with a scanless beam (SLM)
     """
+
     #: Imaging with a scanned beam (galvo-galvo, resonant-galvo)
     IMAGING_SCANNED = 0
     #: Imaging with a scanless beam (SLM)

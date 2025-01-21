@@ -4,13 +4,12 @@ from itertools import accumulate
 from math import sin, pi
 
 
-__all__ = [
-
-]
+__all__ = []
 
 
 """
-This module contains miscellaneous functions implementing various optical equations.
+This module contains some light math 
+(miscellaneous functions implementing various optical equations).
 """
 
 
@@ -26,10 +25,11 @@ def find_beam_diameter(beam_diameter: float, *telescopes: float) -> float:
     return list(accumulate(vector, mul))[-1]
 
 
-def find_effective_na(numerical_aperture: float,
-                      slm_image_width: float,
-                      back_focal_plane_diameter: float,
-                      ) -> float:
+def find_effective_na(
+    numerical_aperture: float,
+    slm_image_width: float,
+    back_focal_plane_diameter: float,
+) -> float:
     """
     Calculate the effective numerical aperture of a system
 
@@ -45,6 +45,35 @@ def find_diffraction_efficiency(levels: int) -> float:
     return 100.0 * (sin(pi / levels) / (pi / levels)) ** 2
 
 
-def find_phase_offset():
-    ...
+def find_rayleigh_length(
+    wavelength: Number,
+    beam_diameter: Optional[Number] = None,
+    n: Number = 1,
+    w0: Optional[Number] = None,
+) -> float: ...
 
+
+def find_diffraction_limit(
+    wavelength: Number,
+    f: Number,
+    beam_diameter: Optional[Number] = None,
+    w0: Optional[Number] = None,
+) -> float: ...
+
+
+def complete_lens_makers_equation(): ...
+
+
+def find_phase_offset(): ...
+
+
+def find_xy_resolution(): ...
+
+
+def find_z_resolution(): ...
+
+
+def find_depth_of_field(): ...
+
+
+def find_radiant_flux(): ...
