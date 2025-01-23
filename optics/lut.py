@@ -37,3 +37,8 @@ class LUT(BaseModel):
             if values.dtype == np.uint8
             else values.astype(np.uint8, casting="unsafe")
         )
+
+
+# Boot up
+# stripes
+# measure 0v1

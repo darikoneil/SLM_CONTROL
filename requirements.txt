@@ -1,7 +1,10 @@
 colorcet
 matplotlib
 numpy
+opencv-python
 polars[numpy, pyarrow]
 pydantic>=2.0
+pylablib-lightweight[devio, extra]
+PyQt6
 scipy
 slmsuite
