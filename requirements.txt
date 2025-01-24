@@ -8,3 +8,6 @@ pylablib-lightweight[devio, extra]
 PyQt6
 scipy
 slmsuite
+git+https://github.com/darikoneil/SLM_control_GUI
+file: matlabroot/extern/engines/python --install-option="--build-base='.'" \
+                                       --install-option="prefix='.'"
