@@ -16,7 +16,6 @@ class _IntEnum(IntEnum):
 
     @classmethod
     def __deserialize__(cls, value: str) -> "_ExporgoIntEnum":
-
         if isinstance(value, str):
             name, value = value[1:-1].split(", ")
             value = int(value)

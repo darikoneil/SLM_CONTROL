@@ -109,3 +109,10 @@ class Photodiode(SimpleNamespace):
     voltage_output: tuple[float, float] = (0.0, 10.0)
     bias_voltage: float = 10.0
     peak_response_at_920nm: float = 0.19
+
+
+def peak_pulse_power(average_power: float, repetition_rate: float, pulse_width: float)-> float:
+    """
+    mw, MHz, fs
+    """
+    return average_power * 1e-3 / (repetition_rate *1e6 * pulse_width * 1e-15)
