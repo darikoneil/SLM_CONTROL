@@ -1,0 +1,346 @@
+function ops = f_SLM_default_ops(GUI_dir)
+
+ops = struct;
+ops.SLM_type = 'BNS1920'; 
+ops.imageGen_ver = '4857';
+ops.imageGen_dir = 'C:\Program Files\Meadowlark Optics\Blink_SDK_all\SDK_1920_4_857';       % newer version
+ops.GS_z_factor = 50/39.7;  % scaling factor for meadowlark GS defocus to match effNA
+ops.GS_num_iterations = 100; % number of iterations for meadowlark GS optimization
+
+%% SLM specific params
+idx = 1;
+SLM_params(idx).SLM_name = 'BNS1920';
+SLM_params(idx).is_OD = 0;
+SLM_params(idx).SDK_ver = '4857'; % 4857, 4851
+SLM_params(idx).bit_depth = 12;
+SLM_params(idx).height = 1152;
+SLM_params(idx).width = 1920;
+SLM_params(idx).lut_fname = 'linear_cut_940_1064.lut'; % linear_cut_940_1064.lut
+SLM_params(idx).SLM_SDK_dir = 'C:\Program Files\Meadowlark Optics\Blink_SDK_all\SDK_1920_4_857'; % Blink OverDrive Plus\SDK, SDK_1920_4_857, SDK_1920_3_528
+SLM_params(idx).regions_use = {'Right half', 'Left half', 'Full SLM'};
+
+%% some default general params
+% 20X olympus specific params
+% ops.objective_mag = 20; %
+% ops.effective_NA = 0.48; % 0.48 for 20x; 
+% ops.FOV_size = 637.4; % in um
+
+% determines the size of all radial patterns (defocus and zernike)
+%ops.beam_diameter = 1152;   % in pixels, unused 
+ops.objective_RI = 1.33;    % used in defocus functions
+%ops.wavelength = 940;       % in nm    
+ops.tube_length = 0.180;     % meters
+
+ops.zoom = 1.0;
+
+ops.NI_DAQ_dvice = 'dev2';
+ops.NI_DAQ_counter_channel = 0;
+ops.NI_DAQ_AI_channel = 0;
+ops.NI_DAQ_AO_channel = 0;
+
+ops.orbital_mag = 0;
+
+%% objective list
+idx = 1;
+objectives(idx).obj_name = '25X_long';
+objectives(idx).FOV_size = 495;
+objectives(idx).magnification = 25;
+objectives(idx).orbital = 0;
+
+idx = idx + 1;
+objectives(idx).obj_name = '25X_fat';
+objectives(idx).FOV_size = 497; % w orb 511; no orb 497
+objectives(idx).magnification = 25;
+objectives(idx).orbital = 1;
+
+idx = idx + 1;
+objectives(idx).obj_name = '20X_fat';
+objectives(idx).FOV_size = 620; % w orb 637.4; no orb est 620
+objectives(idx).magnification = 20;
+objectives(idx).orbital = 1;
+
+%% 25x Long with BNS1920
+idx = 1;
+region_params(idx).obj_name = '25X_long';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Right half';
+region_params(idx).wavelength = 920;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.602;
+region_params(idx).lut_correction_fname = []; %'photodiode_lut_940_slm5221_4_7_22_right_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_25x_maitai_11_11_21.mat';
+region_params(idx).AO_correction_fname =  'AO_correction_25x_maitai_5_19_23.mat'; %'AO_correction_25x_maitai_4_16_23.mat'; % 'AO_correction_25x_maitai_11_21_21.mat';
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 0]; % baseline beam offset
+region_params(idx).xy_over_z_offset = [-0.028 -0.01]; % no orb w na corr [-0.014 0.012]%no orb [-0.02 0.006]; worb[0.027 -0.012]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 5.51935; % in radians % 224 from [0 - 255]
+region_params(idx).zero_order_supp_w = 0.26;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+idx = idx + 1;
+region_params(idx).obj_name = '25X_long';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Left half';
+region_params(idx).wavelength = 1064;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.565; % 0.565 from 11/11/21% 0.51 before
+region_params(idx).lut_correction_fname = 'photodiode_lut_1064_slm5221_4_7_22_left_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_25x_fianium_11_11_21.mat';
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = 'Fianium_0z_4_10_22_pw_corr.mat';
+region_params(idx).xyz_offset = [0 0 -6];  % baseline beam offset
+region_params(idx).xy_over_z_offset = [-0.018 0.0095]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+%% 25x with BNS1920
+idx = idx + 1;
+region_params(idx).obj_name = '25X_fat';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Right half';
+region_params(idx).wavelength = 940;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.632; %.632 no compensation 5/28/23 %0.615 5/8 new ao; 0.625; % 0.625 no orb with na corr; 0.632; % 0.635 on p2obj; no orb 0.632;  w orb 0.61; no orb 0.632 % 11/11/21 0.62  before 11/11/21 0.605;
+region_params(idx).lut_correction_fname = 'photodiode_lut_940_slm5221_4_7_22_right_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_25x_maitai_11_11_21.mat';
+region_params(idx).AO_correction_fname =  'AO_correction_25x_maitai_5_19_23.mat'; %'AO_correction_25x_maitai_4_16_23.mat'; % 'AO_correction_25x_maitai_11_21_21.mat';
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 0]; % baseline beam offset
+region_params(idx).xy_over_z_offset = [-0.028 -0.01]; % no orb w na corr [-0.014 0.012]%no orb [-0.02 0.006]; worb[0.027 -0.012]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 5.51935; % in radians % 224 from [0 - 255]
+region_params(idx).zero_order_supp_w = 0.26;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+idx = idx + 1;
+region_params(idx).obj_name = '25X_fat';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Left half';
+region_params(idx).wavelength = 1064;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.565; % 0.565 from 11/11/21% 0.51 before
+region_params(idx).lut_correction_fname = 'photodiode_lut_1064_slm5221_4_7_22_left_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_25x_fianium_11_11_21.mat';
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = 'Fianium_0z_4_10_22_pw_corr.mat';
+region_params(idx).xyz_offset = [0 0 -6];  % baseline beam offset
+region_params(idx).xy_over_z_offset = [-0.018 0.0095]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+%% 20x with BNS1920
+idx = idx + 1;
+region_params(idx).obj_name = '20X_fat';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Right half'; % imaging
+region_params(idx).wavelength = 940;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.503; % 0.48 with orb; 0.503 no orb % 25x eff NA /25*20
+region_params(idx).lut_correction_fname = 'photodiode_lut_940_slm5221_4_7_22_right_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_20x_maitai_z6_12_21_20.mat';
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 0];
+region_params(idx).xy_over_z_offset = [0 0]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+idx = idx + 1;
+region_params(idx).obj_name = '20X_fat';
+region_params(idx).SLM_name = 'BNS1920';
+region_params(idx).reg_name = 'Left half'; % stimulation
+region_params(idx).wavelength = 1064;
+region_params(idx).phase_diameter = 1152;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 1152;
+region_params(idx).effective_NA = 0.415;
+region_params(idx).lut_correction_fname = 'photodiode_lut_1064_slm5221_4_7_22_left_half_corr2_sub_region_interp_corr.mat';
+region_params(idx).xyz_affine_tf_fname = 'xyz_calib_20x_fianium_z1_12_21_20.mat';
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 -6];
+region_params(idx).xy_over_z_offset = [0 0]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [-350, 0];
+
+%% 25x with BNS512
+idx = idx + 1;
+region_params(idx).obj_name = '25X_fat';
+region_params(idx).SLM_name = 'BNS512';
+region_params(idx).reg_name = 'Full SLM';
+region_params(idx).wavelength = 1040;
+region_params(idx).phase_diameter = 512;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 512;
+region_params(idx).effective_NA = 0.5; %
+region_params(idx).lut_correction_fname = [];
+region_params(idx).xyz_affine_tf_fname = [];
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 0]; % baseline beam offset
+region_params(idx).xy_over_z_offset = [0 0]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [0, 0];
+
+%% 25x with BNS512 overdrive plus
+
+idx = idx + 1;
+region_params(idx).obj_name = '25X_fat';
+region_params(idx).SLM_name = 'BNS512OD';
+region_params(idx).reg_name = 'Full SLM';
+region_params(idx).wavelength = 1040;
+region_params(idx).phase_diameter = 512;
+region_params(idx).zero_outside_phase_diameter = true;
+region_params(idx).beam_diameter = 512;
+region_params(idx).effective_NA = 0.5; 
+region_params(idx).lut_correction_fname = [];
+region_params(idx).xyz_affine_tf_fname = [];
+region_params(idx).AO_correction_fname = [];
+region_params(idx).point_weight_correction_fname = [];
+region_params(idx).xyz_offset = [0 0 0]; % baseline beam offset
+region_params(idx).xy_over_z_offset = [0 0]; % axial beam offset by z
+region_params(idx).zero_order_supp_phase = 0; % in radians % 224 from [0 - 255] 
+region_params(idx).zero_order_supp_w = 0;
+region_params(idx).beam_dump_xy = [0, 0];
+
+
+
+%% default directories
+
+if ~exist('GUI_dir', 'var')
+     GUI_dir = fileparts(mfilename('fullpath'));
+end
+ops.GUI_dir = GUI_dir;
+ 
+% where to save outputs
+ops.calibration_dir = [ops.GUI_dir '\..\SLM_calibration'];
+ops.save_dir = [ops.GUI_dir '\..\SLM_outputs'];
+
+% GUI subdirectories
+ops.lut_dir = [ops.calibration_dir '\lut_calibration'];
+for par = 1:numel(SLM_params)
+    SLM_params(par).lut_dir = ops.lut_dir;
+end
+ops.xyz_calibration_dir = [ops.calibration_dir '\xyz_calibration'];
+ops.AO_correction_dir = [ops.calibration_dir '\AO_correction'];
+ops.point_weight_correction_dir = [ops.calibration_dir '\point_weight_correction'];
+
+ops.custom_phase_dir = [ops.calibration_dir '\custom_phase'];
+ops.pattern_editor_dir = [ops.calibration_dir '\pattern_editor'];
+
+ops.save_AO_dir = [ops.save_dir '\AO_outputs'];
+ops.save_patterns_dir = [ops.save_dir '\saved_patterns'];
+ops.save_lut_dir = [ops.save_dir '\lut_calibration'];
+
+% directory from microscope computer where frames are saved during AO optimization
+ops.AO_recording_dir = ''; % E:\data\SLM\AO\12_4_20\zernike_100um_1modes-001
+
+%% defauld regions list
+idx = 1;
+region_list(idx).reg_name = 'Right half';
+region_list(idx).height_range = [0, 1];
+region_list(idx).width_range = [0.5, 1];
+
+idx = idx + 1;
+region_list(idx).reg_name = 'Left half';
+region_list(idx).height_range = [0, 1];
+region_list(idx).width_range = [0, 0.5];
+
+idx = idx + 1;
+region_list(idx).reg_name = 'Full SLM';
+region_list(idx).height_range = [0, 1];
+region_list(idx).width_range = [0, 1];
+
+
+%% default xyz pattern - regions
+% xyz_pts formats: [x y z]; [x y z weight]; [pat x y z weight]
+idx = 1;
+xyz_patterns(idx).pat_name = 'Multiplane';
+xyz_patterns(idx).xyz_pts = [8 0 -50;...
+                             0 8 -25;...
+                             8 0 0;...
+                             0 8 25;...
+                             8 0 50;];
+xyz_patterns(idx).SLM_region = 'Right half';
+
+idx = idx + 1;
+xyz_patterns(idx).pat_name = 'Multiplane2';
+xyz_patterns(idx).xyz_pts = [0 0 -250;...
+                             0 0 -200;...
+                             0 0 -150;...
+                             0 0 -100;...
+                             0 0 -50;...
+                             0 0 0;...
+                             0 0 50;...
+                             0 0 100;...
+                             0 0 150;...
+                             0 0 200;...
+                             0 0 250];
+xyz_patterns(idx).SLM_region = 'Right half';
+
+idx = idx + 1;
+xyz_patterns(idx).pat_name = 'Stim';
+xyz_patterns(idx).xyz_pts = [8 0 0];
+xyz_patterns(idx).SLM_region = 'Left half';
+
+%% 
+pw_calibration.smooth_std = 1;
+pw_calibration.min_thresh = 0.3;
+pw_calibration.pw_sqrt = 1;
+
+%% ao default params
+
+AO_params.min_Zn = 0;
+AO_params.max_Zn = 5;
+AO_params.w_range = 1.5;
+AO_params.num_w_steps = 13;
+AO_params.w_spline_sm_param = 0.5;
+AO_params.w_reg_factor = 0.003;
+AO_params.ignore_spherical = 1;
+AO_params.scans_per_mode = 4;
+AO_params.default_AO_scan_path = '\\PRAIRIE2000\p2f\Yuriy\SLM\PSF\AO_optimization-001';
+AO_params.Optimization_method = 'Sequential';
+AO_params.refocus_every_n_frames = 200;
+AO_params.refocus_dist = 10;
+AO_params.refocus_num_steps = 11;
+AO_params.refocus_spline_sm_param = 0.3;
+AO_params.scan_all_corr_every_n_frames = 500;
+AO_params.decrease_grad_n_times = 0;
+AO_params.num_iterations = 100;
+AO_params.bead_win_size = 80;
+AO_params.post_scan_delay = 0.8;
+AO_params.fit_ao_method = 'linearinterp'; % linearinterp, smoothingspline
+AO_params.fit_spline_sm_param = 0.5;
+AO_params.fit_save_weights = 1;
+AO_params.constrain_z0 = 0;
+AO_params.compensate_z = 1;
+AO_params.z_comp_thresh = 190; % in um
+AO_params.ignore_0 = 0;
+AO_params.plot_fit = 1;
+AO_params.plot_extra = 0;
+AO_params.ignore_all_spherical = 0;
+
+%% save stuff
+ops.objectives = objectives;
+ops.SLM_params = SLM_params;
+ops.region_params = region_params;
+ops.region_list = region_list;
+ops.xyz_patterns = xyz_patterns;
+ops.pw_calibration = pw_calibration;
+ops.AO_params = AO_params;
+
+end
